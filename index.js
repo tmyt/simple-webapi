@@ -9,7 +9,7 @@ var methods = ['get', 'post', 'put', 'delete'];
 
 for(var i = 0; i < files.length; ++i){
   var api = require(path.resolve(path.join('api', files[i])));
-  var m = files.match(/(.*?)\.js/);
+  var m = files[i].match(/(.*?)\.js/);
   for(var j = 0; j < methods.length; ++j){
     if(api[methods[i]]) app[methods[i]]('/api/' + m[1], api[methods[i]]);
   }
