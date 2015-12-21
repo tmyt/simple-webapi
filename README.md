@@ -24,9 +24,15 @@ exports.get = function(req, res){
 
 ```javascript
 // listen port 3000, api loads from /api
-require('simple-webapi')(3000);
+var app = require('simple-webapi')(3000);
 
 // listen port 3000, api loads from /some/dir
-require('simple-webapi')('/some/dir', 3000);
+var app = require('simple-webapi')('/some/dir', 3000);
+
+// api loads from /api, but not listen.
+var router = require('simple-webapi')();
+
+// api laods from /some/dir, but not listen.
+var router = require('simple-webapi')('/some/dir');
 ```
 
