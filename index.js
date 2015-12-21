@@ -3,20 +3,22 @@ var fs = require('fs')
   , express = require('express');
 
 function run(dir, port){
-  if(port == undefined){
-    if(typeof dir === 'number'){
-      port = dir;
-      dir = 'api';
-    }
+  if(port == undefined && typeof dir === 'number'){
+    port = dir;
+    dir = 'api';
+  }
+  if(dir == undefined){
+    dir = 'api';
   }
 
   var router = express.Router();
   
-  var files = fs.readdirSync(path.resolve(dir));
+  var root = path.dirname(require.main.filename);
+  var files = fs.readdirSync(path.join(root, dir));
   var methods = ['get', 'post', 'put', 'delete'];
   
   for(var i = 0; i < files.length; ++i){
-    var api = require(path.resolve(path.join(dir, files[i])));
+    var api = require(path.join(root, dir, files[i]));
     var m = files[i].match(/(.*?)\.js/);
     for(var j = 0; j < methods.length; ++j){
       if(api[methods[i]]) router[methods[i]]('/' + m[1], api[methods[i]]);
