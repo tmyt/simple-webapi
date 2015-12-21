@@ -9,7 +9,7 @@ this module provides simply method for implements web api.
 write the code in your script.
 
 ```javascript
-require('simple-webapi').listen(3000);
+require('simple-webapi')(3000);
 ```
 
 and add your webapi in api directory.
