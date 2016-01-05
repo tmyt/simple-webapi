@@ -27,7 +27,7 @@ function run(dir, port){
     var api = require(path.join(root, dir, files[i]));
     var m = files[i].match(/(.*?)\.js/);
     for(var j = 0; j < methods.length; ++j){
-      if(api[methods[i]]) router[methods[i]]('/' + m[1], api[methods[i]]);
+      if(api[methods[j]]) router[methods[j]]('/' + m[1], api[methods[j]]);
     }
   }
 
