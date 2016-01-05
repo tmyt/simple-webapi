@@ -3,9 +3,15 @@ var fs = require('fs')
   , express = require('express');
 
 function run(dir, port){
+  if(typeof dir === 'string' && dir == parseInt(dir)){
+    dir = parseInt(dir);
+  }
   if(port == undefined && typeof dir === 'number'){
     port = dir;
     dir = 'api';
+  }
+  if(typeof port === 'string' && port == parseInt(port)){
+    port = parseInt(port);
   }
   if(dir == undefined){
     dir = 'api';
