@@ -1,6 +1,7 @@
 var fs = require('fs')
   , path = require('path')
-  , express = require('express');
+  , express = require('express')
+  , bodyParser = require('body-parser');
 
 function run(dir, port){
   if(typeof dir === 'string' && dir == parseInt(dir)){
@@ -37,6 +38,7 @@ function run(dir, port){
   }
   // listen on specified port
   var app = express();
+  app.use(bodyParser.urlencoded({extended: true}));
   app.use('/api', router);
   app.listen(port);
   return app;
